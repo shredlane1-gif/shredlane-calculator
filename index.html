@@ -29,8 +29,16 @@
       margin: 0 auto;
     }
 
+    .logo {
+      display: block;
+      margin: 0 auto 20px auto;
+      max-width: 220px;
+      width: 100%;
+      height: auto;
+    }
+
     h1 {
-      font-size: 1.7rem;
+      font-size: 1.5rem;
       font-weight: 700;
       text-align: center;
       margin-bottom: 6px;
@@ -213,7 +221,9 @@
 </head>
 <body>
   <div class="container">
-    <h1>Shredlane Calculator</h1>
+    <!-- LOGO -->
+    <img src="logo.png" alt="Shredlane" class="logo" />
+
     <p class="subtitle">Macro & Calorie Targets • Foundations Method</p>
 
     <div class="card">
@@ -300,7 +310,6 @@
 
       let tier = getBaseTier(weight, activity);
 
-      // Muscle goal adjustment
       if (goal === "muscle") {
         if (tier.label === "Tier 1") {
           tier = { calories: 1450, proteinMin: 90, proteinMax: 100, label: "Tier 2 (Muscle)" };
