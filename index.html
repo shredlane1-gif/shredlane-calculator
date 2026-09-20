@@ -37,14 +37,6 @@
       height: auto;
     }
 
-    h1 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      text-align: center;
-      margin-bottom: 6px;
-      color: var(--yellow);
-    }
-
     .subtitle {
       text-align: center;
       color: var(--muted);
@@ -221,8 +213,13 @@
 </head>
 <body>
   <div class="container">
-    <!-- LOGO -->
-    <img src="logo.png" alt="Shredlane" class="logo" />
+    <!-- LOGO (inline SVG - no external file needed) -->
+    <svg class="logo" viewBox="0 0 1000 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Shredlane">
+      <text x="500" y="185" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="150" letter-spacing="2">
+        <tspan fill="#FFD600">SHRED</tspan><tspan fill="#ffffff">LANE</tspan>
+      </text>
+      <text x="500" y="300" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="600" font-size="50" letter-spacing="6" fill="#aaaaaa">MACRO &amp; CALORIE TARGETS</text>
+    </svg>
 
     <p class="subtitle">Macro & Calorie Targets • Foundations Method</p>
 
@@ -275,7 +272,7 @@
 
       <p class="note">
         These targets already include a moderate deficit for fat loss.<br>
-        Protein stays in the practical 1.3–1.6 g/kg range.
+        Protein is set per body-weight tier (roughly 1.3–1.6 g/kg).
       </p>
     </div>
   </div>
@@ -341,6 +338,7 @@ These are the same numbers I use with my coaching clients.
 Knowing the numbers is only step one. Real results come from consistent execution and adjusting based on real data.
 
 If you’d like me to help you build the full structure around your lifestyle, just reply READY here:
+
 https://wa.me/254705671119
 
 Looking forward to hearing from you.`;
