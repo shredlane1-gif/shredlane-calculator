@@ -8,7 +8,6 @@
     :root {
       --black: #0a0a0a;
       --yellow: #FFD600;
-      --dark: #111111;
       --card: #1a1a1a;
       --text: #ffffff;
       --muted: #aaaaaa;
@@ -63,8 +62,7 @@
     }
 
     input[type="text"],
-    input[type="number"],
-    select {
+    input[type="number"] {
       width: 100%;
       padding: 13px 14px;
       border: 1.5px solid #333;
@@ -73,7 +71,6 @@
       margin-bottom: 18px;
       background: #111;
       color: white;
-      transition: border-color 0.2s;
     }
 
     input:focus {
@@ -107,7 +104,6 @@
       font-weight: 500;
       font-size: 0.9rem;
       cursor: pointer;
-      transition: all 0.2s;
       border: 2px solid #333;
       color: #ccc;
     }
@@ -128,15 +124,11 @@
       font-size: 1.05rem;
       font-weight: 700;
       cursor: pointer;
-      transition: all 0.2s;
     }
 
     button:hover {
       background: #ffe033;
-      transform: translateY(-1px);
     }
-
-    button:active { transform: scale(0.98); }
 
     #result {
       display: none;
@@ -150,7 +142,6 @@
 
     .result-box {
       background: linear-gradient(135deg, #111, #1c1c1c);
-      color: white;
       border-radius: 14px;
       padding: 24px;
       text-align: center;
@@ -162,7 +153,6 @@
       font-size: 2.5rem;
       font-weight: 700;
       color: var(--yellow);
-      letter-spacing: -1px;
     }
 
     .result-box .protein {
@@ -212,8 +202,6 @@
       width: auto;
       font-weight: 600;
     }
-
-    .copy-btn:hover { background: #444; }
 
     .note {
       font-size: 0.8rem;
@@ -285,23 +273,17 @@
   <script>
     function getBaseTier(weight, activity) {
       if (weight < 60) {
-        if (activity === "low") {
-          return { calories: 1200, proteinMin: 80, proteinMax: 90, label: "Tier 1" };
-        } else {
-          return { calories: 1450, proteinMin: 90, proteinMax: 100, label: "Tier 2" };
-        }
+        return activity === "low"
+          ? { calories: 1200, proteinMin: 80, proteinMax: 90, label: "Tier 1" }
+          : { calories: 1450, proteinMin: 90, proteinMax: 100, label: "Tier 2" };
       } else if (weight <= 75) {
-        if (activity === "low") {
-          return { calories: 1450, proteinMin: 90, proteinMax: 100, label: "Tier 2" };
-        } else {
-          return { calories: 1750, proteinMin: 100, proteinMax: 110, label: "Tier 3" };
-        }
+        return activity === "low"
+          ? { calories: 1450, proteinMin: 90, proteinMax: 100, label: "Tier 2" }
+          : { calories: 1750, proteinMin: 100, proteinMax: 110, label: "Tier 3" };
       } else {
-        if (activity === "low") {
-          return { calories: 1750, proteinMin: 100, proteinMax: 110, label: "Tier 3" };
-        } else {
-          return { calories: 1950, proteinMin: 110, proteinMax: 120, label: "Tier 3 + Extra" };
-        }
+        return activity === "low"
+          ? { calories: 1750, proteinMin: 100, proteinMax: 110, label: "Tier 3" }
+          : { calories: 1950, proteinMin: 110, proteinMax: 120, label: "Tier 3 + Extra" };
       }
     }
 
@@ -318,7 +300,7 @@
 
       let tier = getBaseTier(weight, activity);
 
-      // Goal adjustment for muscle building
+      // Muscle goal adjustment
       if (goal === "muscle") {
         if (tier.label === "Tier 1") {
           tier = { calories: 1450, proteinMin: 90, proteinMax: 100, label: "Tier 2 (Muscle)" };
@@ -334,28 +316,24 @@
         }
       }
 
-      // Display results
       document.getElementById("calories").textContent = tier.calories.toLocaleString() + " kcal";
       document.getElementById("protein").textContent = `${tier.proteinMin}–${tier.proteinMax} g protein`;
       document.getElementById("tierLabel").textContent = tier.label;
 
-      // Personalized message
       const message = `Hey ${name},
 
-Here are your starting targets based on your weight and activity level:
+Here are your starting targets:
 
-• Daily Calories: ${tier.calories} kcal
-• Protein Target: ${tier.proteinMin}–${tier.proteinMax} g
+• Calories: ${tier.calories} kcal
+• Protein: ${tier.proteinMin}–${tier.proteinMax} g
 
-These numbers are the same framework I use with my coaching clients.
+These are the same numbers I use with my coaching clients.
 
-Knowing the numbers is only the first step. The real results come from consistent execution, accurate weighing, and adjusting based on real data — not just following a number forever.
+Knowing the numbers is only step one. Real results come from consistent execution and adjusting based on real data.
 
-Want me to build the full structure around your lifestyle and schedule?
+If you’d like me to help you build the full structure around your lifestyle, just reply READY on WhatsApp: +254 705 671 119
 
-Just reply “READY” and I’ll take it from there.
-
-(If you’d rather jump on a quick call, you can book here: https://forms.gle/S3xNdG7f3v5RYhxSA)`;
+Looking forward to hearing from you.`;
 
       document.getElementById("message").textContent = message;
       document.getElementById("result").style.display = "block";
@@ -370,11 +348,10 @@ Just reply “READY” and I’ll take it from there.
       });
     }
 
-    // Allow Enter key
-    document.getElementById("weight").addEventListener("keydown", function(e) {
+    document.getElementById("weight").addEventListener("keydown", e => {
       if (e.key === "Enter") calculate();
     });
-    document.getElementById("name").addEventListener("keydown", function(e) {
+    document.getElementById("name").addEventListener("keydown", e => {
       if (e.key === "Enter") calculate();
     });
   </script>
