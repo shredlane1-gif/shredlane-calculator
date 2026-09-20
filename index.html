@@ -6,19 +6,19 @@
   <title>Shredlane Macro & Calorie Calculator</title>
   <style>
     :root {
-      --primary: #1a1a1a;
-      --accent: #e63946;
-      --bg: #f8f9fa;
-      --card: #ffffff;
-      --text: #333;
-      --muted: #6c757d;
+      --black: #0a0a0a;
+      --yellow: #FFD600;
+      --dark: #111111;
+      --card: #1a1a1a;
+      --text: #ffffff;
+      --muted: #aaaaaa;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: var(--bg);
+      background: var(--black);
       color: var(--text);
       line-height: 1.5;
       padding: 20px;
@@ -31,11 +31,11 @@
     }
 
     h1 {
-      font-size: 1.6rem;
+      font-size: 1.7rem;
       font-weight: 700;
       text-align: center;
-      margin-bottom: 8px;
-      color: var(--primary);
+      margin-bottom: 6px;
+      color: var(--yellow);
     }
 
     .subtitle {
@@ -49,8 +49,9 @@
       background: var(--card);
       border-radius: 16px;
       padding: 28px 24px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.4);
       margin-bottom: 20px;
+      border: 1px solid #222;
     }
 
     label {
@@ -58,25 +59,26 @@
       font-weight: 600;
       font-size: 0.9rem;
       margin-bottom: 6px;
-      color: var(--primary);
+      color: var(--yellow);
     }
 
+    input[type="text"],
     input[type="number"],
     select {
       width: 100%;
-      padding: 12px 14px;
-      border: 1.5px solid #e0e0e0;
+      padding: 13px 14px;
+      border: 1.5px solid #333;
       border-radius: 10px;
       font-size: 1rem;
       margin-bottom: 18px;
-      background: #fff;
+      background: #111;
+      color: white;
       transition: border-color 0.2s;
     }
 
-    input[type="number"]:focus,
-    select:focus {
+    input:focus {
       outline: none;
-      border-color: var(--accent);
+      border-color: var(--yellow);
     }
 
     .radio-group {
@@ -99,36 +101,41 @@
     .radio-option label {
       display: block;
       padding: 12px 10px;
-      background: #f1f3f5;
+      background: #111;
       border-radius: 10px;
       text-align: center;
       font-weight: 500;
       font-size: 0.9rem;
       cursor: pointer;
       transition: all 0.2s;
-      border: 2px solid transparent;
+      border: 2px solid #333;
+      color: #ccc;
     }
 
     .radio-option input:checked + label {
-      background: #fff0f1;
-      border-color: var(--accent);
-      color: var(--accent);
+      background: rgba(255, 214, 0, 0.12);
+      border-color: var(--yellow);
+      color: var(--yellow);
     }
 
     button {
       width: 100%;
-      padding: 14px;
-      background: var(--accent);
-      color: white;
+      padding: 15px;
+      background: var(--yellow);
+      color: #000;
       border: none;
       border-radius: 12px;
       font-size: 1.05rem;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
-      transition: background 0.2s, transform 0.1s;
+      transition: all 0.2s;
     }
 
-    button:hover { background: #d62839; }
+    button:hover {
+      background: #ffe033;
+      transform: translateY(-1px);
+    }
+
     button:active { transform: scale(0.98); }
 
     #result {
@@ -142,40 +149,43 @@
     }
 
     .result-box {
-      background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+      background: linear-gradient(135deg, #111, #1c1c1c);
       color: white;
       border-radius: 14px;
-      padding: 22px;
+      padding: 24px;
       text-align: center;
       margin-bottom: 18px;
+      border: 1px solid #333;
     }
 
     .result-box .calories {
-      font-size: 2.4rem;
+      font-size: 2.5rem;
       font-weight: 700;
+      color: var(--yellow);
       letter-spacing: -1px;
     }
 
     .result-box .protein {
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       margin-top: 6px;
-      opacity: 0.9;
+      color: #eee;
     }
 
     .result-box .tier {
       font-size: 0.85rem;
       margin-top: 10px;
-      opacity: 0.7;
+      color: var(--muted);
     }
 
     .copy-section {
-      background: #f8f9fa;
+      background: #111;
       border-radius: 12px;
       padding: 16px;
       font-size: 0.9rem;
       line-height: 1.55;
       white-space: pre-wrap;
-      border: 1px solid #e9ecef;
+      border: 1px solid #333;
+      color: #ddd;
     }
 
     .copy-header {
@@ -188,25 +198,27 @@
     .copy-header span {
       font-weight: 600;
       font-size: 0.9rem;
+      color: var(--yellow);
     }
 
     .copy-btn {
-      background: #e9ecef;
-      color: #333;
+      background: #333;
+      color: white;
       border: none;
-      padding: 6px 12px;
+      padding: 7px 14px;
       border-radius: 6px;
       font-size: 0.8rem;
       cursor: pointer;
       width: auto;
+      font-weight: 600;
     }
 
-    .copy-btn:hover { background: #dee2e6; }
+    .copy-btn:hover { background: #444; }
 
     .note {
       font-size: 0.8rem;
       color: var(--muted);
-      margin-top: 14px;
+      margin-top: 16px;
       text-align: center;
     }
   </style>
@@ -217,6 +229,9 @@
     <p class="subtitle">Macro & Calorie Targets • Foundations Method</p>
 
     <div class="card">
+      <label for="name">Your First Name</label>
+      <input type="text" id="name" placeholder="e.g. Sarah" />
+
       <label for="weight">Current Body Weight (kg)</label>
       <input type="number" id="weight" min="40" max="150" step="0.1" placeholder="e.g. 72.5" />
 
@@ -255,7 +270,7 @@
       </div>
 
       <div class="copy-header">
-        <span>Ready-to-send DM / Email</span>
+        <span>Ready-to-send Message</span>
         <button class="copy-btn" onclick="copyMessage()">Copy</button>
       </div>
       <div class="copy-section" id="message"></div>
@@ -269,7 +284,6 @@
 
   <script>
     function getBaseTier(weight, activity) {
-      // Returns { calories, proteinMin, proteinMax, label }
       if (weight < 60) {
         if (activity === "low") {
           return { calories: 1200, proteinMin: 80, proteinMax: 90, label: "Tier 1" };
@@ -283,7 +297,6 @@
           return { calories: 1750, proteinMin: 100, proteinMax: 110, label: "Tier 3" };
         }
       } else {
-        // Over 75 kg
         if (activity === "low") {
           return { calories: 1750, proteinMin: 100, proteinMax: 110, label: "Tier 3" };
         } else {
@@ -293,6 +306,7 @@
     }
 
     function calculate() {
+      const name = document.getElementById("name").value.trim() || "there";
       const weight = parseFloat(document.getElementById("weight").value);
       const activity = document.querySelector('input[name="activity"]:checked').value;
       const goal = document.querySelector('input[name="goal"]:checked').value;
@@ -304,9 +318,8 @@
 
       let tier = getBaseTier(weight, activity);
 
-      // Goal adjustment
+      // Goal adjustment for muscle building
       if (goal === "muscle") {
-        // Move up one tier or add 200–300 kcal
         if (tier.label === "Tier 1") {
           tier = { calories: 1450, proteinMin: 90, proteinMax: 100, label: "Tier 2 (Muscle)" };
         } else if (tier.label === "Tier 2") {
@@ -314,7 +327,6 @@
         } else if (tier.label === "Tier 3") {
           tier = { calories: 1950, proteinMin: 110, proteinMax: 120, label: "Tier 3 + Extra (Muscle)" };
         } else {
-          // Already Tier 3 + Extra → just add ~250 kcal
           tier.calories = 2200;
           tier.proteinMin = 120;
           tier.proteinMax = 130;
@@ -327,8 +339,8 @@
       document.getElementById("protein").textContent = `${tier.proteinMin}–${tier.proteinMax} g protein`;
       document.getElementById("tierLabel").textContent = tier.label;
 
-      // Generate message
-      const message = `Hey [First Name],
+      // Personalized message
+      const message = `Hey ${name},
 
 Here are your starting targets based on your weight and activity level:
 
@@ -341,7 +353,9 @@ Knowing the numbers is only the first step. The real results come from consisten
 
 Want me to build the full structure around your lifestyle and schedule?
 
-Reply “READY” or [Click here to book a quick strategy call].`;
+Just reply “READY” and I’ll take it from there.
+
+(If you’d rather jump on a quick call, you can book here: https://forms.gle/S3xNdG7f3v5RYhxSA)`;
 
       document.getElementById("message").textContent = message;
       document.getElementById("result").style.display = "block";
@@ -356,8 +370,11 @@ Reply “READY” or [Click here to book a quick strategy call].`;
       });
     }
 
-    // Allow Enter key to calculate
+    // Allow Enter key
     document.getElementById("weight").addEventListener("keydown", function(e) {
+      if (e.key === "Enter") calculate();
+    });
+    document.getElementById("name").addEventListener("keydown", function(e) {
       if (e.key === "Enter") calculate();
     });
   </script>
