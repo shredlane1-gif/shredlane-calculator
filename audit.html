@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Calorie Deficit Audit | Shredlane Prime</title>
+  <title>Fat-Loss Reality Check | Shredlane</title>
   <style>
     :root {
       --black: #0a0a0a;
@@ -39,7 +39,7 @@
     }
 
     h1 {
-      font-size: 1.6rem;
+      font-size: 1.55rem;
       font-weight: 700;
       text-align: center;
       color: var(--yellow);
@@ -56,59 +56,60 @@
     .card {
       background: var(--card);
       border-radius: 16px;
-      padding: 28px 24px;
+      padding: 26px 22px;
       box-shadow: 0 4px 24px rgba(0,0,0,0.4);
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       border: 1px solid #222;
     }
 
     .section-title {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 600;
       color: var(--yellow);
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       border-bottom: 1px solid #222;
       padding-bottom: 8px;
     }
 
-    .form-group {
-      margin-bottom: 16px;
+    .question {
+      margin-bottom: 22px;
     }
 
-    label {
+    .question-label {
       display: block;
-      font-size: 0.9rem;
-      color: #ddd;
-      margin-bottom: 6px;
+      font-size: 0.98rem;
+      color: #eee;
+      margin-bottom: 10px;
+      font-weight: 500;
     }
 
-    input[type="number"], input[type="text"] {
+    .option {
+      display: block;
       width: 100%;
-      padding: 12px 14px;
+      padding: 13px 15px;
+      margin-bottom: 9px;
       background: #111;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      color: #fff;
+      border: 2px solid #333;
+      border-radius: 11px;
+      color: #ddd;
       font-size: 0.95rem;
-      outline: none;
-      transition: border-color 0.2s;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s;
     }
 
-    input[type="number"]:focus, input[type="text"]:focus {
+    .option:hover { border-color: #555; }
+    .option.selected {
       border-color: var(--yellow);
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      background: rgba(255, 214, 0, 0.12);
+      color: var(--yellow);
     }
 
     .checkbox-group {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin-bottom: 16px;
+      gap: 10px;
+      margin-bottom: 10px;
     }
 
     .checkbox-item {
@@ -120,19 +121,13 @@
       border: 1px solid var(--border);
       border-radius: 10px;
       cursor: pointer;
-      transition: border-color 0.2s;
     }
 
-    .checkbox-item:hover {
-      border-color: #555;
-    }
-
-    .checkbox-item input[type="checkbox"] {
+    .checkbox-item input {
       margin-top: 3px;
       accent-color: var(--yellow);
       width: 18px;
       height: 18px;
-      cursor: pointer;
     }
 
     .checkbox-item span {
@@ -150,12 +145,10 @@
       font-size: 1.05rem;
       font-weight: 700;
       cursor: pointer;
-      margin-top: 10px;
+      margin-top: 8px;
     }
 
-    .btn:hover {
-      background: #ffe033;
-    }
+    .btn:hover { background: #ffe033; }
 
     .hidden { display: none; }
 
@@ -171,7 +164,7 @@
       background: #111;
       border-radius: 12px;
       padding: 18px;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
       border: 1px solid #333;
     }
 
@@ -188,7 +181,7 @@
     }
 
     .result-box ul {
-      padding-left: 20px;
+      padding-left: 18px;
     }
 
     .cta-box {
@@ -197,7 +190,7 @@
       border-radius: 14px;
       padding: 20px;
       text-align: center;
-      margin-top: 24px;
+      margin-top: 20px;
     }
 
     .cta-box h3 {
@@ -215,143 +208,99 @@
     .intro-text {
       color: #ccc;
       font-size: 0.95rem;
-      margin-bottom: 20px;
+      margin-bottom: 8px;
       line-height: 1.6;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- LOGO -->
     <img src="logo.png" alt="Shredlane" class="logo" onerror="this.style.display='none'" />
 
-    <!-- INTRO & AUDIT FORM -->
+    <!-- FORM -->
     <div id="audit-form">
       <div class="card">
-        <h1>Calorie Deficit Audit</h1>
-        <p class="subtitle">Are you actually in a deficit?</p>
+        <h1>Fat-Loss Reality Check</h1>
+        <p class="subtitle">Are you actually set up to lose fat?</p>
         <div class="intro-text">
-          Many people who think they are in a deficit are not. This audit helps you see the reality clearly so you can fix the right thing. Be honest: nobody is grading you but the scale[cite: 2, 3].
+          Most people who feel stuck are not in a real deficit. Answer honestly — this will show you the truth in under 2 minutes.
         </div>
       </div>
 
-      <!-- PAGE 2: TARGETS & REALITY -->
+      <!-- QUESTIONS -->
       <div class="card">
-        <div class="section-title">1. Targets vs Reality</div>
-        
-        <div class="grid-2">
-          <div class="form-group">
-            <label>Daily Calorie Target (kcal)</label>
-            <input type="number" id="targetCalories" placeholder="e.g. 1800">
-          </div>
-          <div class="form-group">
-            <label>Est. Daily Calories Eaten</label>
-            <input type="number" id="realCalories" placeholder="e.g. 2100">
-          </div>
+        <div class="section-title">Quick Questions</div>
+
+        <div class="question">
+          <div class="question-label">1. How accurately do you track your food?</div>
+          <button class="option" onclick="selectOption(this, 'tracking', 'weigh')">I weigh most things</button>
+          <button class="option" onclick="selectOption(this, 'tracking', 'estimate')">I estimate or use measuring cups</button>
+          <button class="option" onclick="selectOption(this, 'tracking', 'eyeball')">I mostly eyeball</button>
+          <button class="option" onclick="selectOption(this, 'tracking', 'none')">I don’t track</button>
         </div>
 
-        <div class="grid-2">
-          <div class="form-group">
-            <label>Days Tracked (out of 7)</label>
-            <input type="number" id="daysTracked" min="0" max="7" placeholder="0-7">
-          </div>
-          <div class="form-group">
-            <label>Days Hit Protein (out of 7)</label>
-            <input type="number" id="daysProtein" min="0" max="7" placeholder="0-7">
-          </div>
+        <div class="question">
+          <div class="question-label">2. How different is your weekend eating from weekdays?</div>
+          <button class="option" onclick="selectOption(this, 'weekend', 'same')">Almost the same</button>
+          <button class="option" onclick="selectOption(this, 'weekend', 'moderate')">Moderately higher</button>
+          <button class="option" onclick="selectOption(this, 'weekend', 'big')">Much higher on weekends</button>
         </div>
 
-        <div class="grid-2">
-          <div class="form-group">
-            <label>Avg Weekday Calories</label>
-            <input type="number" id="weekdayCalories" placeholder="e.g. 1700">
-          </div>
-          <div class="form-group">
-            <label>Avg Weekend Calories</label>
-            <input type="number" id="weekendCalories" placeholder="e.g. 2500">
-          </div>
+        <div class="question">
+          <div class="question-label">3. How many days out of the last 7 did you follow your plan reasonably well?</div>
+          <button class="option" onclick="selectOption(this, 'consistency', 'high')">6–7 days</button>
+          <button class="option" onclick="selectOption(this, 'consistency', 'mid')">4–5 days</button>
+          <button class="option" onclick="selectOption(this, 'consistency', 'low')">2–3 days</button>
+          <button class="option" onclick="selectOption(this, 'consistency', 'verylow')">0–1 days</button>
+        </div>
+
+        <div class="question">
+          <div class="question-label">4. Do you currently have a clear daily calorie target?</div>
+          <button class="option" onclick="selectOption(this, 'target', 'yes')">Yes, and I know what it is</button>
+          <button class="option" onclick="selectOption(this, 'target', 'rough')">I have a rough idea</button>
+          <button class="option" onclick="selectOption(this, 'target', 'no')">No clear target</button>
         </div>
       </div>
 
-      <!-- PAGE 3: HIDDEN CALORIES CHECKLIST -->
+      <!-- HIDDEN CALORIES -->
       <div class="card">
-        <div class="section-title">2. Hidden Calories Checklist</div>
+        <div class="section-title">Hidden Calories Checklist</div>
         <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 14px;">
-          Select everything that applied to you in the last 7–14 days:
+          Tick everything that applied in the last 7–14 days:
         </p>
 
         <div class="checkbox-group">
-          <label class="checkbox-item">
-            <input type="checkbox" class="hidden-check">
-            <span>Cooking oils / butter not measured</span>
-          </label>
-          <label class="checkbox-item">
-            <input type="checkbox" class="hidden-check">
-            <span>Sauces, dressings, or peanut butter not fully counted</span>
-          </label>
-          <label class="checkbox-item">
-            <input type="checkbox" class="hidden-check">
-            <span>"Tastes" while cooking</span>
-          </label>
-          <label class="checkbox-item">
-            <input type="checkbox" class="hidden-check">
-            <span>Drinks (juice, soda, alcohol, sweetened tea/coffee)</span>
-          </label>
-          <label class="checkbox-item">
-            <input type="checkbox" class="hidden-check">
-            <span>Snacks eaten while standing or driving</span>
-          </label>
-          <label class="checkbox-item">
-            <input type="checkbox" class="hidden-check">
-            <span>Second helpings</span>
-          </label>
-          <label class="checkbox-item">
-            <input type="checkbox" class="hidden-check">
-            <span>Eating out or takeaway 2+ times</span>
-          </label>
-          <label class="checkbox-item">
-            <input type="checkbox" class="hidden-check">
-            <span>Shared plates or family-style meals</span>
-          </label>
-          <label class="checkbox-item">
-            <input type="checkbox" class="hidden-check">
-            <span>Protein bars / "healthy" snacks that are calorie-dense</span>
-          </label>
-          <label class="checkbox-item">
-            <input type="checkbox" class="hidden-check">
-            <span>Late-night eating</span>
-          </label>
+          <label class="checkbox-item"><input type="checkbox" class="hidden-check"> <span>Cooking oils / butter not measured</span></label>
+          <label class="checkbox-item"><input type="checkbox" class="hidden-check"> <span>Sauces, dressings or peanut butter not fully counted</span></label>
+          <label class="checkbox-item"><input type="checkbox" class="hidden-check"> <span>“Tastes” while cooking</span></label>
+          <label class="checkbox-item"><input type="checkbox" class="hidden-check"> <span>Liquid calories (juice, soda, alcohol, sweetened tea)</span></label>
+          <label class="checkbox-item"><input type="checkbox" class="hidden-check"> <span>Snacks while standing or driving</span></label>
+          <label class="checkbox-item"><input type="checkbox" class="hidden-check"> <span>Second helpings</span></label>
+          <label class="checkbox-item"><input type="checkbox" class="hidden-check"> <span>Eating out or takeaway 2+ times</span></label>
+          <label class="checkbox-item"><input type="checkbox" class="hidden-check"> <span>Late-night eating</span></label>
         </div>
       </div>
 
-      <!-- PAGE 4: ACCURACY RATING -->
       <div class="card">
-        <div class="section-title">3. Self-Assessment</div>
-        <div class="form-group">
-          <label>On a scale of 1-10, how accurate was your tracking this week?</label>
-          <input type="number" id="trackingAccuracy" min="1" max="10" placeholder="1 - 10">
-        </div>
-
-        <button class="btn" onclick="calculateAudit()">Calculate Audit Verdict</button>
+        <button class="btn" onclick="calculateRealityCheck()">See My Reality Check</button>
       </div>
     </div>
 
-    <!-- RESULTS SCREEN -->
+    <!-- RESULTS -->
     <div id="results" class="hidden">
       <div class="card">
         <div class="result-headline" id="verdictTitle"></div>
 
         <div class="result-box">
-          <h3>Audit Analysis</h3>
+          <h3>What this means</h3>
           <p id="verdictExplanation"></p>
         </div>
 
         <div class="result-box">
-          <h3>This Week's Action Plan</h3>
+          <h3>What to fix this week</h3>
           <ul id="actionPlan"></ul>
         </div>
 
-        <!-- UPDATED CTA BOX -->
         <div class="cta-box">
           <h3>Your result shows a clear bottleneck</h3>
           <p style="margin-bottom: 14px; color: #ccc;">
@@ -382,58 +331,92 @@
   </div>
 
   <script>
-    function calculateAudit() {
-      const daysTracked = parseInt(document.getElementById('daysTracked').value) || 0;
-      const accuracy = parseInt(document.getElementById('trackingAccuracy').value) || 0;
-      const weekdayCals = parseInt(document.getElementById('weekdayCalories').value) || 0;
-      const weekendCals = parseInt(document.getElementById('weekendCalories').value) || 0;
-      
-      const checkedBoxes = document.querySelectorAll('.hidden-check:checked').length;
+    const answers = {
+      tracking: null,
+      weekend: null,
+      consistency: null,
+      target: null
+    };
+
+    function selectOption(btn, key, value) {
+      // Remove selected from siblings
+      const parent = btn.parentElement;
+      parent.querySelectorAll('.option').forEach(el => el.classList.remove('selected'));
+      btn.classList.add('selected');
+      answers[key] = value;
+    }
+
+    function calculateRealityCheck() {
+      // Check if all questions answered
+      if (!answers.tracking || !answers.weekend || !answers.consistency || !answers.target) {
+        alert("Please answer all the quick questions first.");
+        return;
+      }
+
+      const hiddenCount = document.querySelectorAll('.hidden-check:checked').length;
 
       let verdict = "";
       let explanation = "";
       let actions = [];
 
-      // Evaluation Logic
-      if (daysTracked >= 6 && accuracy >= 8 && checkedBoxes <= 2 && (weekendCals <= weekdayCals + 200)) {
-        verdict = "I am likely in a real deficit";
-        explanation = "Your tracking consistency is high, weekend variance is controlled, and hidden sources are low. Keep going and monitor your weekly average.";
+      // Scoring logic (prioritised)
+      const poorTracking = answers.tracking === "eyeball" || answers.tracking === "none";
+      const bigWeekend = answers.weekend === "big";
+      const lowConsistency = answers.consistency === "low" || answers.consistency === "verylow";
+      const noTarget = answers.target === "no" || answers.target === "rough";
+      const manyHidden = hiddenCount >= 4;
+
+      if (poorTracking || manyHidden) {
+        verdict = "You are most likely not in a real deficit";
+        explanation = "Inaccurate tracking and uncounted extras (oils, sauces, tastes, drinks, second helpings) are almost certainly cancelling out your intended deficit. This is the most common reason people stay stuck.";
         actions = [
-          "Maintain current tracking precision for another 7 days.",
-          "Focus on consistency rather than changing your intake targets.",
-          "Track step count to ensure NEAT non-exercise activity remains high."
+          "Weigh cooking oils, butter and peanut butter for the next 7 days.",
+          "Log every single bite and drink — including tastes while cooking.",
+          "Treat tracking accuracy as the main priority this week."
         ];
-      } else if (daysTracked >= 4 && checkedBoxes <= 4) {
-        verdict = "I am borderline";
-        explanation = "You have good intentions, but subtle calorie leaks or weekend bumps are likely bringing your average calories too close to maintenance.";
+      } 
+      else if (bigWeekend || lowConsistency) {
+        verdict = "Weekend and consistency issues are wiping out your progress";
+        explanation = "Even if your weekdays are decent, large weekend differences or only following the plan a few days a week keeps your weekly average near maintenance.";
         actions = [
-          "One tracking improvement: Weigh cooking oils and butter on a digital scale instead of eyeballing.",
-          "One hidden calorie source to control: Limit weekend calorie spikes to match weekday targets.",
-          "New focus: Track all 7 days without missing entries."
+          "Plan your weekend meals on Friday.",
+          "Track all 7 days this week — no full days off.",
+          "Keep weekend calories within 200–300 of your weekday average."
         ];
-      } else {
-        verdict = "I am probably not in a consistent deficit";
-        explanation = "Between untracked days, unmeasured food additions, or elevated weekend eating, your net intake is wiping out your daily deficit. This is the main issue to fix.";
+      }
+      else if (noTarget) {
+        verdict = "You don’t have a clear enough target";
+        explanation = "Without a specific calorie target, it’s very hard to create a consistent deficit. Most people in this position are eating closer to maintenance than they realise.";
         actions = [
-          "One tracking improvement: Log every meal before eating it for the next 7 straight days.",
-          "One hidden calorie source to control: Eliminating uncounted liquid calories, cooking oils, and untracked snacks.",
-          "New focus: Re-establish an accurate daily intake target and stick to it strictly for 1 week."
+          "Get a clear daily calorie and protein target.",
+          "Track accurately for 7 full days against that target.",
+          "Review your weekly average at the end of the week."
+        ];
+      }
+      else {
+        verdict = "You are close — but small leaks remain";
+        explanation = "Your approach is better than most, but there are still a few accuracy or consistency gaps that are slowing results.";
+        actions = [
+          "Tighten tracking on oils, sauces and snacks for 7 days.",
+          "Protect your weekends.",
+          "Focus on weekly average weight instead of daily fluctuations."
         ];
       }
 
+      // Show results
       document.getElementById('audit-form').classList.add('hidden');
       document.getElementById('results').classList.remove('hidden');
 
-      document.getElementById('verdictTitle').textContent = `Verdict: ${verdict}`;
+      document.getElementById('verdictTitle').textContent = verdict;
       document.getElementById('verdictExplanation').textContent = explanation;
 
-      const actionsList = document.getElementById('actionPlan');
-      actionsList.innerHTML = "";
+      const list = document.getElementById('actionPlan');
+      list.innerHTML = "";
       actions.forEach(act => {
         const li = document.createElement('li');
         li.textContent = act;
         li.style.marginBottom = "8px";
-        actionsList.appendChild(li);
+        list.appendChild(li);
       });
     }
   </script>
