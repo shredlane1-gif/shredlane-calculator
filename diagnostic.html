@@ -160,6 +160,12 @@
       font-size: 1.05rem;
     }
 
+    .result-box p {
+      color: #ccc;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
     .cta-box {
       background: linear-gradient(135deg, #1a1a1a, #222);
       border: 1px solid var(--yellow);
@@ -390,23 +396,20 @@
         optionsDiv.appendChild(btn);
       });
 
-      // Progress
-      const progress = ((current) / questions.length) * 100;
+      // Correct step progress bar calculation
+      const progress = ((current + 1) / questions.length) * 100;
       document.getElementById("progress").style.width = progress + "%";
 
-      // Buttons
-      document.getElementById("nextBtn").classList.add("hidden");
+      // Dynamically toggle controls
+      document.getElementById("nextBtn").classList.toggle("hidden", !answers[q.id]);
       document.getElementById("backBtn").classList.toggle("hidden", current === 0);
     }
 
     function selectOption(value, btn) {
-      // Remove selected from siblings
       document.querySelectorAll(".option").forEach(el => el.classList.remove("selected"));
       btn.classList.add("selected");
       
       answers[questions[current].id] = value;
-      
-      // Show next button
       document.getElementById("nextBtn").classList.remove("hidden");
     }
 
@@ -445,78 +448,76 @@
     function diagnose() {
       const a = answers;
 
-      // 1. Tracking / Accuracy problem
-      if ((a[4] === "eyeball" || a[4] === "none") && (a[7] === "often" || a[7] === "sometimes")) {
+      // 1. Tracking / Accuracy Leakage
+      if (a[4] === "eyeball" || a[4] === "none" || a[7] === "often" || a[7] === "sometimes") {
         return {
-          name: "Tracking / Accuracy Problem",
-          explanation: `You’re not getting a clear picture of what you’re actually eating. When food is eyeballed or uncounted extras (oils, sauces, tastes, second helpings) happen regularly, the numbers you think you’re hitting are usually much higher in reality. This is the most common reason people feel stuck even when they believe they’re in a deficit.`,
+          name: "Tracking / Accuracy Leakage",
+          explanation: `You are consuming more calories than you realize. When food is eyeballed or uncounted extras (oils, sauces, cooking tastes, unrecorded drinks) occur, daily intake easily drifts 300–500 calories higher than estimated, erasing your intended caloric deficit.`,
           actions: `
-            <p>1. For the next 7 days, weigh everything you can (including oils and sauces).</p>
-            <p>2. Log every single thing that goes in your mouth — even “just a taste”.</p>
+            <p style="margin-bottom: 8px;">1. <strong>Weigh oil and cooking fats:</strong> Measure every tablespoon or pour on a digital food scale for 7 straight days.</p>
+            <p>2. <strong>Log every bite:</strong> Record every snack, liquid calorie, or taste while cooking as soon as you consume it.</p>
           `
         };
       }
 
-      // 2. Protein too low
-      if (a[5] === "rarely" || a[5] === "none") {
+      // 2. Weekend Overconsumption
+      if (a[6] === "big" || a[9] === "low" || a[9] === "very low") {
         return {
-          name: "Protein Too Low",
-          explanation: `You’re not hitting a solid protein target consistently. Low protein makes it harder to stay full, preserve muscle, and keep metabolic rate higher while dieting. This often leads to more hunger, more snacking, and slower fat loss.`,
+          name: "Weekend Surplus Overriding Weekday Deficit",
+          explanation: `Your weekly adherence is inconsistent. Even with a disciplined deficit from Monday through Thursday, a high-calorie weekend offsets your progress and pulls your total weekly average calories back to maintenance level.`,
           actions: `
-            <p>1. Set a clear protein target (usually 1.3–1.6g per kg of bodyweight).</p>
-            <p>2. Build every meal around a protein source first, then add the rest.</p>
+            <p style="margin-bottom: 8px;">1. <strong>Plan weekend meals:</strong> Structure your weekend meals on Friday before social occasions begin.</p>
+            <p>2. <strong>Track 7 days a week:</strong> Log food through Saturday and Sunday without taking total "days off" from tracking.</p>
           `
         };
       }
 
-      // 3. Consistency problem
-      if (a[9] === "low" || a[9] === "very low" || a[6] === "big") {
+      // 3. Protein Deficiency
+      if (a[5] === "rarely" || a[5] === "none" || a[5] === "half") {
         return {
-          name: "Consistency Problem",
-          explanation: `You’re not following the plan often enough for fat loss to show up. Even a good plan fails when it’s only followed 2–3 days a week or when weekends completely undo the weekday deficit. Consistency beats perfection.`,
+          name: "Low Protein Intake",
+          explanation: `You are consistently under-consuming protein. Protein is required to preserve muscle, sustain metabolic rate, and control hunger. Falling short leads to higher appetite, increased snacking, and slower fat loss.`,
           actions: `
-            <p>1. Aim for 5 solid days this week instead of trying to be perfect every day.</p>
-            <p>2. Decide in advance what your weekends will look like so they don’t become free-for-alls.</p>
+            <p style="margin-bottom: 8px;">1. <strong>Anchor meals with protein:</strong> Build every main meal around a primary lean protein source.</p>
+            <p>2. <strong>Set a daily baseline:</strong> Target 1.3–1.6 grams of protein per kilogram of bodyweight every day.</p>
           `
         };
       }
 
-      // 4. True deficit too small
-      if ((a[3] === "high" || a[3] === "veryhigh" || a[3] === "estimate" || a[3] === "none") && 
-          (a[8] === "low" || a[8] === "mid" || a[8] === "none")) {
+      // 4. Low Daily Expenditure / Small Deficit
+      if ((a[3] === "high" || a[3] === "veryhigh" || a[3] === "estimate" || a[3] === "none") && (a[8] === "low" || a[8] === "mid" || a[8] === "none")) {
         return {
-          name: "True Deficit Too Small",
-          explanation: `Your current calorie target (or lack of a clear one) combined with relatively low movement means you’re probably not in a meaningful deficit most days. Small or non-existent deficits produce very slow or zero fat loss.`,
+          name: "Low Daily Movement & Small Deficit",
+          explanation: `Your caloric intake relative to your daily physical activity is too high. Low daily step counts reduce non-exercise activity thermogenesis (NEAT), leaving your net daily deficit too small to trigger steady weight loss.`,
           actions: `
-            <p>1. Get a clear calorie target based on your weight and activity (use the Shredlane Calculator).</p>
-            <p>2. Increase daily steps to at least 8,000 as a simple way to create more deficit.</p>
+            <p style="margin-bottom: 8px;">1. <strong>Set an 8,000-step floor:</strong> Treat daily walking as a non-negotiable metric alongside workouts.</p>
+            <p>2. <strong>Set explicit targets:</strong> Use a macro calculator to establish an accurate daily intake target matching your goals.</p>
           `
         };
       }
 
-      // 5. Recovery / Lifestyle
-      if (a[10] === "both" || a[10] === "sleep" || (a[10] === "stress" && (a[8] === "low" || a[8] === "none"))) {
+      // 5. Recovery & Stress
+      if (a[10] === "both" || a[10] === "sleep" || a[10] === "stress") {
         return {
-          name: "Recovery / Lifestyle",
-          explanation: `Poor sleep and high stress are quietly working against you. They increase hunger hormones, reduce willpower, and can slow recovery. When these are off, even good nutrition becomes much harder to stick to.`,
+          name: "High Stress & Inadequate Recovery",
+          explanation: `High cortisol from elevated stress and poor sleep promotes water retention that hides body fat loss on the scale. Poor rest also elevates hunger hormones (ghrelin), making calorie adherence significantly harder.`,
           actions: `
-            <p>1. Protect a consistent sleep window this week (same bedtime and wake time).</p>
-            <p>2. Keep steps moving even on stressful days — movement helps regulate stress.</p>
+            <p style="margin-bottom: 8px;">1. <strong>Protect a sleep window:</strong> Maintain a strict 7–8 hour sleep schedule every night this week.</p>
+            <p>2. <strong>Prioritize low-stress movement:</strong> Incorporate daily outdoor walking to manage stress levels.</p>
           `
         };
       }
 
-      // Default fallback
+      // Fallback
       return {
-        name: "Tracking / Accuracy Problem",
-        explanation: `The most common reason people feel stuck is that their tracking isn’t as accurate as they think. Small daily underestimations add up quickly and erase the deficit.`,
+        name: "Tracking & Portion Accuracy",
+        explanation: `Small daily portion underestimations and unmeasured condiments are narrowing your deficit.`,
         actions: `
-          <p>1. Weigh your food for the next 7 days.</p>
-          <p>2. Be honest about every bite, taste, and splash of oil.</p>
+          <p style="margin-bottom: 8px;">1. <strong>Weigh all solid food:</strong> Use a digital scale for all main meals over the next 7 days.</p>
+          <p>2. <strong>Log continuously:</strong> Track all meals, drinks, and snacks without skipping days.</p>
         `
       };
     }
   </script>
 </body>
 </html>
-
