@@ -231,7 +231,7 @@
         <h1>Calorie Deficit Audit</h1>
         <p class="subtitle">Are you actually in a deficit?</p>
         <div class="intro-text">
-          Many people who think they are in a deficit are not. This audit helps you see the reality clearly so you can fix the right thing. Be honest: nobody is grading you but the scale[cite: 3].
+          Many people who think they are in a deficit are not. This audit helps you see the reality clearly so you can fix the right thing. Be honest: nobody is grading you but the scale[cite: 2, 3].
         </div>
       </div>
 
@@ -241,33 +241,33 @@
         
         <div class="grid-2">
           <div class="form-group">
-            <label>Daily Calorie Target (kcal)[cite: 4]</label>
+            <label>Daily Calorie Target (kcal)</label>
             <input type="number" id="targetCalories" placeholder="e.g. 1800">
           </div>
           <div class="form-group">
-            <label>Est. Daily Calories Eaten[cite: 4]</label>
+            <label>Est. Daily Calories Eaten</label>
             <input type="number" id="realCalories" placeholder="e.g. 2100">
           </div>
         </div>
 
         <div class="grid-2">
           <div class="form-group">
-            <label>Days Tracked (out of 7)[cite: 4]</label>
+            <label>Days Tracked (out of 7)</label>
             <input type="number" id="daysTracked" min="0" max="7" placeholder="0-7">
           </div>
           <div class="form-group">
-            <label>Days Hit Protein (out of 7)[cite: 4]</label>
+            <label>Days Hit Protein (out of 7)</label>
             <input type="number" id="daysProtein" min="0" max="7" placeholder="0-7">
           </div>
         </div>
 
         <div class="grid-2">
           <div class="form-group">
-            <label>Avg Weekday Calories[cite: 4]</label>
+            <label>Avg Weekday Calories</label>
             <input type="number" id="weekdayCalories" placeholder="e.g. 1700">
           </div>
           <div class="form-group">
-            <label>Avg Weekend Calories[cite: 4]</label>
+            <label>Avg Weekend Calories</label>
             <input type="number" id="weekendCalories" placeholder="e.g. 2500">
           </div>
         </div>
@@ -277,49 +277,49 @@
       <div class="card">
         <div class="section-title">2. Hidden Calories Checklist</div>
         <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 14px;">
-          Select everything that applied to you in the last 7–14 days[cite: 5]:
+          Select everything that applied to you in the last 7–14 days:
         </p>
 
         <div class="checkbox-group">
           <label class="checkbox-item">
             <input type="checkbox" class="hidden-check">
-            <span>Cooking oils / butter not measured[cite: 5]</span>
+            <span>Cooking oils / butter not measured</span>
           </label>
           <label class="checkbox-item">
             <input type="checkbox" class="hidden-check">
-            <span>Sauces, dressings, or peanut butter not fully counted[cite: 5]</span>
+            <span>Sauces, dressings, or peanut butter not fully counted</span>
           </label>
           <label class="checkbox-item">
             <input type="checkbox" class="hidden-check">
-            <span>"Tastes" while cooking[cite: 5]</span>
+            <span>"Tastes" while cooking</span>
           </label>
           <label class="checkbox-item">
             <input type="checkbox" class="hidden-check">
-            <span>Drinks (juice, soda, alcohol, sweetened tea/coffee)[cite: 5]</span>
+            <span>Drinks (juice, soda, alcohol, sweetened tea/coffee)</span>
           </label>
           <label class="checkbox-item">
             <input type="checkbox" class="hidden-check">
-            <span>Snacks eaten while standing or driving[cite: 5]</span>
+            <span>Snacks eaten while standing or driving</span>
           </label>
           <label class="checkbox-item">
             <input type="checkbox" class="hidden-check">
-            <span>Second helpings[cite: 5]</span>
+            <span>Second helpings</span>
           </label>
           <label class="checkbox-item">
             <input type="checkbox" class="hidden-check">
-            <span>Eating out or takeaway 2+ times[cite: 5]</span>
+            <span>Eating out or takeaway 2+ times</span>
           </label>
           <label class="checkbox-item">
             <input type="checkbox" class="hidden-check">
-            <span>Shared plates or family-style meals[cite: 5]</span>
+            <span>Shared plates or family-style meals</span>
           </label>
           <label class="checkbox-item">
             <input type="checkbox" class="hidden-check">
-            <span>Protein bars / "healthy" snacks that are calorie-dense[cite: 5]</span>
+            <span>Protein bars / "healthy" snacks that are calorie-dense</span>
           </label>
           <label class="checkbox-item">
             <input type="checkbox" class="hidden-check">
-            <span>Late-night eating[cite: 5]</span>
+            <span>Late-night eating</span>
           </label>
         </div>
       </div>
@@ -328,7 +328,7 @@
       <div class="card">
         <div class="section-title">3. Self-Assessment</div>
         <div class="form-group">
-          <label>On a scale of 1-10, how accurate was your tracking this week?[cite: 6]</label>
+          <label>On a scale of 1-10, how accurate was your tracking this week?</label>
           <input type="number" id="trackingAccuracy" min="1" max="10" placeholder="1 - 10">
         </div>
 
@@ -347,22 +347,31 @@
         </div>
 
         <div class="result-box">
-          <h3>This Week's Action Plan[cite: 6]</h3>
+          <h3>This Week's Action Plan</h3>
           <ul id="actionPlan"></ul>
         </div>
 
+        <!-- UPDATED CTA BOX -->
         <div class="cta-box">
-          <h3>Want the complete system?[cite: 6]</h3>
+          <h3>Your result shows a clear bottleneck</h3>
           <p style="margin-bottom: 14px; color: #ccc;">
-            Get Shredlane Foundations for the exact structure that keeps you in a reliable deficit week after week[cite: 6].
+            Most people in this situation need more than a checklist — they need a clear plan and accountability.
           </p>
-          <p style="font-weight: 700; color: var(--yellow); margin-bottom: 14px;">
-            KES 1,997
+          <p style="margin-bottom: 18px; color: #ccc;">
+            Message me on WhatsApp with the word <strong style="color: var(--yellow);">READY</strong> and I’ll tell you the fastest way to fix this.
           </p>
-          <a href="https://wa.me/254705671119?text=Hi%2C%20I%20just%20completed%20the%20Calorie%20Deficit%20Audit%20and%20I%27m%20interested%20in%20Shredlane%20Foundations" 
-             class="btn" style="text-decoration: none; display: block;">
-            Message me on WhatsApp
+          
+          <a href="https://wa.me/254705671119?text=READY" 
+             class="btn" style="text-decoration: none; display: block; margin-bottom: 20px;">
+            → WhatsApp me: READY
           </a>
+
+          <p style="font-size: 0.9rem; color: #888; margin-bottom: 6px;">
+            Prefer to do it yourself first?
+          </p>
+          <p style="font-size: 0.95rem; color: #ccc;">
+            Shredlane Foundations is available for <strong style="color: var(--yellow);">KES 1,997</strong>
+          </p>
         </div>
 
         <button class="btn" style="background: transparent; border: 2px solid #444; color: #ccc; margin-top: 16px;" onclick="location.reload()">
@@ -387,28 +396,28 @@
 
       // Evaluation Logic
       if (daysTracked >= 6 && accuracy >= 8 && checkedBoxes <= 2 && (weekendCals <= weekdayCals + 200)) {
-        verdict = "I am likely in a real deficit[cite: 6]";
-        explanation = "Your tracking consistency is high, weekend variance is controlled, and hidden sources are low[cite: 6]. Keep going and monitor your weekly average[cite: 6].";
+        verdict = "I am likely in a real deficit";
+        explanation = "Your tracking consistency is high, weekend variance is controlled, and hidden sources are low. Keep going and monitor your weekly average.";
         actions = [
-          "Maintain current tracking precision for another 7 days[cite: 6].",
+          "Maintain current tracking precision for another 7 days.",
           "Focus on consistency rather than changing your intake targets.",
           "Track step count to ensure NEAT non-exercise activity remains high."
         ];
       } else if (daysTracked >= 4 && checkedBoxes <= 4) {
-        verdict = "I am borderline[cite: 6]";
-        explanation = "You have good intentions, but subtle calorie leaks or weekend bumps are likely bringing your average calories too close to maintenance[cite: 6].";
+        verdict = "I am borderline";
+        explanation = "You have good intentions, but subtle calorie leaks or weekend bumps are likely bringing your average calories too close to maintenance.";
         actions = [
-          "One tracking improvement: Weigh cooking oils and butter on a digital scale instead of eyeballing[cite: 5, 6].",
-          "One hidden calorie source to control: Limit weekend calorie spikes to match weekday targets[cite: 4, 6].",
-          "New focus: Track all 7 days without missing entries[cite: 4, 6]."
+          "One tracking improvement: Weigh cooking oils and butter on a digital scale instead of eyeballing.",
+          "One hidden calorie source to control: Limit weekend calorie spikes to match weekday targets.",
+          "New focus: Track all 7 days without missing entries."
         ];
       } else {
-        verdict = "I am probably not in a consistent deficit[cite: 6]";
-        explanation = "Between untracked days, unmeasured food additions, or elevated weekend eating, your net intake is wiping out your daily deficit[cite: 4, 5, 6]. This is the main issue to fix[cite: 6].";
+        verdict = "I am probably not in a consistent deficit";
+        explanation = "Between untracked days, unmeasured food additions, or elevated weekend eating, your net intake is wiping out your daily deficit. This is the main issue to fix.";
         actions = [
-          "One tracking improvement: Log every meal before eating it for the next 7 straight days[cite: 4, 6].",
-          "One hidden calorie source to control: Eliminating uncounted liquid calories, cooking oils, and untracked snacks[cite: 5, 6].",
-          "New focus: Re-establish an accurate daily intake target and stick to it strictly for 1 week[cite: 4, 6]."
+          "One tracking improvement: Log every meal before eating it for the next 7 straight days.",
+          "One hidden calorie source to control: Eliminating uncounted liquid calories, cooking oils, and untracked snacks.",
+          "New focus: Re-establish an accurate daily intake target and stick to it strictly for 1 week."
         ];
       }
 
