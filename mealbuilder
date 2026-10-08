@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shredlane Meal Builder</title>
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --yellow: #FFD600;
+      --card: #1a1a1a;
+      --text: #ffffff;
+      --muted: #aaaaaa;
+      --border: #333;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--black);
+      color: var(--text);
+      line-height: 1.5;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      display: block;
+      margin: 0 auto 16px auto;
+      max-width: 200px;
+      width: 100%;
+      height: auto;
+    }
+
+    h1 {
+      font-size: 1.55rem;
+      font-weight: 700;
+      text-align: center;
+      color: var(--yellow);
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 24px 20px;
+      margin-bottom: 18px;
+      border: 1px solid #222;
+    }
+
+    .section-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--yellow);
+      margin-bottom: 14px;
+      border-bottom: 1px solid #222;
+      padding-bottom: 8px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.9rem;
+      color: #ddd;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px 14px;
+      background: #111;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      color: white;
+      font-size: 0.95rem;
+      margin-bottom: 14px;
+      outline: none;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--yellow);
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 15px;
+      background: var(--yellow);
+      color: #000;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn:hover { background: #ffe033; }
+
+    .hidden { display: none; }
+
+    .result-box {
+      background: #111;
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 16px;
+      border: 1px solid #333;
+    }
+
+    .result-box h3 {
+      color: var(--yellow);
+      margin-bottom: 10px;
+      font-size: 1.05rem;
+    }
+
+    .result-box p, .result-box li {
+      color: #ccc;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .result-box ul {
+      padding-left: 18px;
+      margin-bottom: 8px;
+    }
+
+    .cta-box {
+      background: linear-gradient(135deg, #1a1a1a, #222);
+      border: 1px solid var(--yellow);
+      border-radius: 14px;
+      padding: 20px;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .cta-box h3 {
+      color: var(--yellow);
+      margin-bottom: 8px;
+    }
+
+    .note {
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 16px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: rgba(255,214,0,0.12);
+      color: var(--yellow);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="logo.png" alt="Shredlane" class="logo" onerror="this.style.display='none'">
+
+    <h1>Shredlane Meal Builder</h1>
+    <p class="subtitle">Build balanced meals in under 60 seconds</p>
+
+    <!-- FORM -->
+    <div id="form">
+      <div class="card">
+        <div class="section-title">Your Targets</div>
+        
+        <label>Daily Calorie Target</label>
+        <input type="number" id="calories" placeholder="e.g. 1600" min="1000" max="3000">
+
+        <label>Daily Protein Target (g)</label>
+        <input type="number" id="protein" placeholder="e.g. 110" min="60" max="200">
+
+        <label>How many meals do you prefer today?</label>
+        <select id="meals">
+          <option value="2">2 meals</option>
+          <option value="3" selected>3 meals</option>
+          <option value="1">1 big meal</option>
+        </select>
+      </div>
+
+      <div class="card">
+        <div class="section-title">What do you have available?</div>
+        <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 12px;">
+          Tick everything you can use today:
+        </p>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px;">
+          <label style="display:flex;align-items:center;gap:8px;font-size:0.9rem;color:#ccc;">
+            <input type="checkbox" class="food" value="eggs"> Eggs
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:0.9rem;color:#ccc;">
+            <input type="checkbox" class="food" value="chicken"> Chicken
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:0.9rem;color:#ccc;">
+            <input type="checkbox" class="food" value="beef"> Beef / Goat
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:0.9rem;color:#ccc;">
+            <input type="checkbox" class="food" value="fish"> Fish / Omena
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:0.9rem;color:#ccc;">
+            <input type="checkbox" class="food" value="soya"> Soya
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:0.9rem;color:#ccc;">
+            <input type="checkbox" class="food" value="beans"> Beans / Ndengu
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:0.9rem;color:#ccc;">
+            <input type="checkbox" class="food" value="ugali"> Ugali
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:0.9rem;color:#ccc;">
+            <input type="checkbox" class="food" value="rice"> Rice
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:0.9rem;color:#ccc;">
+            <input type="checkbox" class="food" value="chapati"> Chapati
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:0.9rem;color:#ccc;">
+            <input type="checkbox" class="food" value="potato"> Potato / Sweet potato
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:0.9rem;color:#ccc;">
+            <input type="checkbox" class="food" value="greens"> Sukuma / Greens
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:0.9rem;color:#ccc;">
+            <input type="checkbox" class="food" value="milk"> Milk / Mala / Yoghurt
+          </label>
+        </div>
+
+        <label>Any other ingredients? (optional)</label>
+        <textarea id="extra" placeholder="e.g. avocado, peanut butter, leftover stew..."></textarea>
+      </div>
+
+      <div class="card">
+        <button class="btn" onclick="buildMeals()">Build My Meals</button>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div id="results" class="hidden">
+      <div class="card">
+        <div class="tag">YOUR MEAL PLAN</div>
+        <div id="output"></div>
+
+        <div class="cta-box">
+          <h3>Want this done for you every week?</h3>
+          <p style="margin-bottom: 14px; color: #ccc;">
+            Most people know what to eat but still struggle with consistency and adjustments.
+          </p>
+          <p style="margin-bottom: 18px; color: #ccc;">
+            Message me on WhatsApp with the word <strong style="color: var(--yellow);">READY</strong> and I’ll help you lock it in.
+          </p>
+          
+          <a href="https://wa.me/254705671119?text=READY" 
+             class="btn" style="text-decoration: none; display: block; margin-bottom: 18px;">
+            → WhatsApp me: READY
+          </a>
+
+          <p style="font-size: 0.9rem; color: #888; margin-bottom: 4px;">
+            Prefer the full system?
+          </p>
+          <p style="font-size: 0.95rem; color: #ccc;">
+            Shredlane Foundations — <strong style="color: var(--yellow);">KES 1,997</strong>
+          </p>
+        </div>
+
+        <button class="btn" style="background: transparent; border: 2px solid #444; color: #ccc; margin-top: 16px;" onclick="location.reload()">
+          Build Another Meal
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function buildMeals() {
+      const cal = parseInt(document.getElementById('calories').value) || 0;
+      const pro = parseInt(document.getElementById('protein').value) || 0;
+      const mealCount = document.getElementById('meals').value;
+      const extra = document.getElementById('extra').value.trim();
+
+      if (!cal || !pro) {
+        alert("Please enter both calorie and protein targets.");
+        return;
+      }
+
+      const selected = [];
+      document.querySelectorAll('.food:checked').forEach(cb => selected.push(cb.value));
+
+      if (selected.length === 0 && !extra) {
+        alert("Please select at least a few ingredients you have available.");
+        return;
+      }
+
+      // Simple portion logic
+      const proteinPerMeal = Math.round(pro / mealCount);
+      const calPerMeal = Math.round(cal / mealCount);
+
+      let html = `
+        <div class="result-box">
+          <h3>Targets for today</h3>
+          <p><strong>${cal} kcal</strong> • <strong>${pro}g protein</strong> • ${mealCount} meal${mealCount > 1 ? 's' : ''}</p>
+        </div>
+      `;
+
+      // Build meal suggestions
+      const proteins = selected.filter(f => ['eggs','chicken','beef','fish','soya','beans','milk'].includes(f));
+      const carbs = selected.filter(f => ['ugali','rice','chapati','potato'].includes(f));
+      const veg = selected.includes('greens');
+
+      for (let i = 1; i <= mealCount; i++) {
+        html += `<div class="result-box">`;
+        html += `<h3>Meal ${i}</h3><ul>`;
+
+        // Protein suggestion
+        if (proteins.includes('eggs')) {
+          const eggs = proteinPerMeal >= 30 ? 4 : (proteinPerMeal >= 20 ? 3 : 2);
+          html += `<li><strong>${eggs} eggs</strong> (boiled or scrambled with minimal oil)</li>`;
+        } else if (proteins.includes('chicken')) {
+          html += `<li><strong>${Math.round(proteinPerMeal * 3.5)}g chicken</strong> (raw weight)</li>`;
+        } else if (proteins.includes('beef')) {
+          html += `<li><strong>${Math.round(proteinPerMeal * 3.8)}g beef/goat</strong> (raw weight)</li>`;
+        } else if (proteins.includes('fish')) {
+          html += `<li><strong>${Math.round(proteinPerMeal * 4)}g fish / omena</strong></li>`;
+        } else if (proteins.includes('soya')) {
+          html += `<li><strong>${Math.round(proteinPerMeal * 1.2)}g soya</strong> (dry weight)</li>`;
+        } else if (proteins.includes('beans')) {
+          html += `<li><strong>${Math.round(proteinPerMeal * 5)}g cooked beans/ndengu</strong></li>`;
+        } else if (proteins.includes('milk')) {
+          html += `<li><strong>300–400ml milk / mala / yoghurt</strong></li>`;
+        } else {
+          html += `<li><strong>Add a protein source</strong> (~${proteinPerMeal}g protein)</li>`;
+        }
+
+        // Carb
+        if (carbs.includes('ugali')) {
+          html += `<li><strong>${mealCount === 1 ? 250 : 150}–${mealCount === 1 ? 300 : 200}g ugali</strong> (cooked)</li>`;
+        } else if (carbs.includes('rice')) {
+          html += `<li><strong>${mealCount === 1 ? 180 : 120}–${mealCount === 1 ? 220 : 150}g cooked rice</strong></li>`;
+        } else if (carbs.includes('chapati')) {
+          html += `<li><strong>${mealCount === 1 ? 2 : 1} chapati</strong></li>`;
+        } else if (carbs.includes('potato')) {
+          html += `<li><strong>${mealCount === 1 ? 300 : 200}g potato / sweet potato</strong></li>`;
+        }
+
+        // Greens
+        if (veg) {
+          html += `<li><strong>150–200g sukuma / mixed greens</strong></li>`;
+        } else {
+          html += `<li style="color:#FFB800"><strong>+ Add greens</strong> for volume and satiety</li>`;
+        }
+
+        html += `</ul></div>`;
+      }
+
+      if (extra) {
+        html += `
+          <div class="result-box">
+            <h3>Extra ingredients you mentioned</h3>
+            <p>${extra}</p>
+            <p style="font-size:0.9rem;color:var(--muted);margin-top:8px;">
+              Use these to replace or add to the suggestions above while staying near your calorie target.
+            </p>
+          </div>
+        `;
+      }
+
+      html += `
+        <div class="result-box">
+          <h3>Quick Rules</h3>
+          <ul>
+            <li>Weigh meat, rice, soya and omena <strong>raw</strong></li>
+            <li>Weigh ugali, beans and lentils <strong>cooked</strong></li>
+            <li>Measure oils and peanut butter — they add up fast</li>
+            <li>If eating out, log +15g oil as a default “restaurant tax”</li>
+          </ul>
+        </div>
+      `;
+
+      document.getElementById('output').innerHTML = html;
+      document.getElementById('form').classList.add('hidden');
+      document.getElementById('results').classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
