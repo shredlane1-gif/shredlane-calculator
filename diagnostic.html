@@ -244,18 +244,27 @@
           <div id="actions"></div>
         </div>
 
+        <!-- UPDATED CTA BOX -->
         <div class="cta-box">
-          <h3>Want the complete system?</h3>
+          <h3>Your result shows a clear bottleneck</h3>
           <p style="margin-bottom: 14px; color: #ccc;">
-            Shredlane Foundations gives you the exact structure that prevents these bottlenecks from happening again.
+            Most people in this situation need more than a checklist — they need a clear plan and accountability.
           </p>
-          <p style="font-weight: 700; color: var(--yellow); margin-bottom: 14px;">
-            KES 1,997
+          <p style="margin-bottom: 18px; color: #ccc;">
+            Message me on WhatsApp with the word <strong style="color: var(--yellow);">READY</strong> and I’ll tell you the fastest way to fix this.
           </p>
-          <a href="https://wa.me/254705671119?text=Hi%2C%20I%20just%20did%20the%20diagnostic%20and%20I%27m%20interested%20in%20Foundations" 
-             class="btn" style="text-decoration: none; display: block;">
-            Message me on WhatsApp
+          
+          <a href="https://wa.me/254705671119?text=READY" 
+             class="btn" style="text-decoration: none; display: block; margin-bottom: 20px;">
+            → WhatsApp me: READY
           </a>
+
+          <p style="font-size: 0.9rem; color: #888; margin-bottom: 6px;">
+            Prefer to do it yourself first?
+          </p>
+          <p style="font-size: 0.95rem; color: #ccc;">
+            Shredlane Foundations is available for <strong style="color: var(--yellow);">KES 1,997</strong>
+          </p>
         </div>
 
         <p class="note">
@@ -396,11 +405,9 @@
         optionsDiv.appendChild(btn);
       });
 
-      // Correct step progress bar calculation
       const progress = ((current + 1) / questions.length) * 100;
       document.getElementById("progress").style.width = progress + "%";
 
-      // Dynamically toggle controls
       document.getElementById("nextBtn").classList.toggle("hidden", !answers[q.id]);
       document.getElementById("backBtn").classList.toggle("hidden", current === 0);
     }
@@ -448,7 +455,6 @@
     function diagnose() {
       const a = answers;
 
-      // 1. Tracking / Accuracy Leakage
       if (a[4] === "eyeball" || a[4] === "none" || a[7] === "often" || a[7] === "sometimes") {
         return {
           name: "Tracking / Accuracy Leakage",
@@ -460,7 +466,6 @@
         };
       }
 
-      // 2. Weekend Overconsumption
       if (a[6] === "big" || a[9] === "low" || a[9] === "very low") {
         return {
           name: "Weekend Surplus Overriding Weekday Deficit",
@@ -472,7 +477,6 @@
         };
       }
 
-      // 3. Protein Deficiency
       if (a[5] === "rarely" || a[5] === "none" || a[5] === "half") {
         return {
           name: "Low Protein Intake",
@@ -484,7 +488,6 @@
         };
       }
 
-      // 4. Low Daily Expenditure / Small Deficit
       if ((a[3] === "high" || a[3] === "veryhigh" || a[3] === "estimate" || a[3] === "none") && (a[8] === "low" || a[8] === "mid" || a[8] === "none")) {
         return {
           name: "Low Daily Movement & Small Deficit",
@@ -496,7 +499,6 @@
         };
       }
 
-      // 5. Recovery & Stress
       if (a[10] === "both" || a[10] === "sleep" || a[10] === "stress") {
         return {
           name: "High Stress & Inadequate Recovery",
@@ -508,7 +510,6 @@
         };
       }
 
-      // Fallback
       return {
         name: "Tracking & Portion Accuracy",
         explanation: `Small daily portion underestimations and unmeasured condiments are narrowing your deficit.`,
