@@ -167,6 +167,28 @@
       color: var(--muted);
     }
 
+    .cta-box {
+      background: linear-gradient(135deg, #1a1a1a, #222);
+      border: 1px solid var(--yellow);
+      border-radius: 14px;
+      padding: 22px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .cta-box h3 {
+      color: var(--yellow);
+      margin-bottom: 10px;
+      font-size: 1.15rem;
+    }
+
+    .cta-box p {
+      color: #ccc;
+      font-size: 0.95rem;
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+
     .copy-section {
       background: #111;
       border-radius: 12px;
@@ -213,7 +235,7 @@
 </head>
 <body>
   <div class="container">
-    <!-- LOGO (inline SVG - no external file needed) -->
+    <!-- LOGO -->
     <svg class="logo" viewBox="0 0 1000 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Shredlane">
       <text x="500" y="185" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="150" letter-spacing="2">
         <tspan fill="#FFD600">SHRED</tspan><tspan fill="#ffffff">LANE</tspan>
@@ -264,6 +286,30 @@
         <div class="tier" id="tierLabel"></div>
       </div>
 
+      <!-- STRONG CTA -->
+      <div class="cta-box">
+        <h3>Numbers alone don’t create results</h3>
+        <p>
+          Most people get targets and still stay stuck because they lack structure and accountability.
+        </p>
+        <p style="margin-bottom: 18px;">
+          Message me on WhatsApp with the word <strong style="color: var(--yellow);">READY</strong> and I’ll show you the fastest way to turn these numbers into real progress.
+        </p>
+        
+        <a href="https://wa.me/254705671119?text=READY" 
+           class="btn" style="text-decoration: none; display: block; margin-bottom: 18px; background: var(--yellow); color: #000; padding: 15px; border-radius: 12px; font-weight: 700;">
+          → WhatsApp me: READY
+        </a>
+
+        <p style="font-size: 0.9rem; color: #888; margin-bottom: 4px;">
+          Prefer to do it yourself first?
+        </p>
+        <p style="font-size: 0.95rem; color: #ccc; margin-bottom: 0;">
+          Shredlane Foundations is available for <strong style="color: var(--yellow);">KES 1,997</strong>
+        </p>
+      </div>
+
+      <!-- Optional copyable message -->
       <div class="copy-header">
         <span>Ready-to-send Message</span>
         <button class="copy-btn" onclick="copyMessage()">Copy</button>
@@ -345,6 +391,9 @@ Looking forward to hearing from you.`;
 
       document.getElementById("message").textContent = message;
       document.getElementById("result").style.display = "block";
+
+      // Smooth scroll to results
+      document.getElementById("result").scrollIntoView({ behavior: "smooth" });
     }
 
     function copyMessage() {
