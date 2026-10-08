@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calorie Deficit Audit | Shredlane Prime</title>
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --yellow: #FFD600;
+      --card: #1a1a1a;
+      --text: #ffffff;
+      --muted: #aaaaaa;
+      --border: #333333;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--black);
+      color: var(--text);
+      line-height: 1.5;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      display: block;
+      margin: 0 auto 16px auto;
+      max-width: 200px;
+      width: 100%;
+      height: auto;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      text-align: center;
+      color: var(--yellow);
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 28px 24px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+      margin-bottom: 20px;
+      border: 1px solid #222;
+    }
+
+    .section-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--yellow);
+      margin-bottom: 16px;
+      border-bottom: 1px solid #222;
+      padding-bottom: 8px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.9rem;
+      color: #ddd;
+      margin-bottom: 6px;
+    }
+
+    input[type="number"], input[type="text"] {
+      width: 100%;
+      padding: 12px 14px;
+      background: #111;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: #fff;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input[type="number"]:focus, input[type="text"]:focus {
+      border-color: var(--yellow);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: #111;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+
+    .checkbox-item:hover {
+      border-color: #555;
+    }
+
+    .checkbox-item input[type="checkbox"] {
+      margin-top: 3px;
+      accent-color: var(--yellow);
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+
+    .checkbox-item span {
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 15px;
+      background: var(--yellow);
+      color: #000;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .btn:hover {
+      background: #ffe033;
+    }
+
+    .hidden { display: none; }
+
+    .result-headline {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--yellow);
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .result-box {
+      background: #111;
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 18px;
+      border: 1px solid #333;
+    }
+
+    .result-box h3 {
+      color: var(--yellow);
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+    }
+
+    .result-box p, .result-box li {
+      color: #ccc;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .result-box ul {
+      padding-left: 20px;
+    }
+
+    .cta-box {
+      background: linear-gradient(135deg, #1a1a1a, #222);
+      border: 1px solid var(--yellow);
+      border-radius: 14px;
+      padding: 20px;
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    .cta-box h3 {
+      color: var(--yellow);
+      margin-bottom: 8px;
+    }
+
+    .note {
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 16px;
+    }
+
+    .intro-text {
+      color: #ccc;
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- LOGO -->
+    <img src="logo.png" alt="Shredlane" class="logo" onerror="this.style.display='none'" />
+
+    <!-- INTRO & AUDIT FORM -->
+    <div id="audit-form">
+      <div class="card">
+        <h1>Calorie Deficit Audit</h1>
+        <p class="subtitle">Are you actually in a deficit?</p>
+        <div class="intro-text">
+          Many people who think they are in a deficit are not. This audit helps you see the reality clearly so you can fix the right thing. Be honest: nobody is grading you but the scale[cite: 3].
+        </div>
+      </div>
+
+      <!-- PAGE 2: TARGETS & REALITY -->
+      <div class="card">
+        <div class="section-title">1. Targets vs Reality</div>
+        
+        <div class="grid-2">
+          <div class="form-group">
+            <label>Daily Calorie Target (kcal)[cite: 4]</label>
+            <input type="number" id="targetCalories" placeholder="e.g. 1800">
+          </div>
+          <div class="form-group">
+            <label>Est. Daily Calories Eaten[cite: 4]</label>
+            <input type="number" id="realCalories" placeholder="e.g. 2100">
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label>Days Tracked (out of 7)[cite: 4]</label>
+            <input type="number" id="daysTracked" min="0" max="7" placeholder="0-7">
+          </div>
+          <div class="form-group">
+            <label>Days Hit Protein (out of 7)[cite: 4]</label>
+            <input type="number" id="daysProtein" min="0" max="7" placeholder="0-7">
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label>Avg Weekday Calories[cite: 4]</label>
+            <input type="number" id="weekdayCalories" placeholder="e.g. 1700">
+          </div>
+          <div class="form-group">
+            <label>Avg Weekend Calories[cite: 4]</label>
+            <input type="number" id="weekendCalories" placeholder="e.g. 2500">
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE 3: HIDDEN CALORIES CHECKLIST -->
+      <div class="card">
+        <div class="section-title">2. Hidden Calories Checklist</div>
+        <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 14px;">
+          Select everything that applied to you in the last 7–14 days[cite: 5]:
+        </p>
+
+        <div class="checkbox-group">
+          <label class="checkbox-item">
+            <input type="checkbox" class="hidden-check">
+            <span>Cooking oils / butter not measured[cite: 5]</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" class="hidden-check">
+            <span>Sauces, dressings, or peanut butter not fully counted[cite: 5]</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" class="hidden-check">
+            <span>"Tastes" while cooking[cite: 5]</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" class="hidden-check">
+            <span>Drinks (juice, soda, alcohol, sweetened tea/coffee)[cite: 5]</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" class="hidden-check">
+            <span>Snacks eaten while standing or driving[cite: 5]</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" class="hidden-check">
+            <span>Second helpings[cite: 5]</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" class="hidden-check">
+            <span>Eating out or takeaway 2+ times[cite: 5]</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" class="hidden-check">
+            <span>Shared plates or family-style meals[cite: 5]</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" class="hidden-check">
+            <span>Protein bars / "healthy" snacks that are calorie-dense[cite: 5]</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" class="hidden-check">
+            <span>Late-night eating[cite: 5]</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- PAGE 4: ACCURACY RATING -->
+      <div class="card">
+        <div class="section-title">3. Self-Assessment</div>
+        <div class="form-group">
+          <label>On a scale of 1-10, how accurate was your tracking this week?[cite: 6]</label>
+          <input type="number" id="trackingAccuracy" min="1" max="10" placeholder="1 - 10">
+        </div>
+
+        <button class="btn" onclick="calculateAudit()">Calculate Audit Verdict</button>
+      </div>
+    </div>
+
+    <!-- RESULTS SCREEN -->
+    <div id="results" class="hidden">
+      <div class="card">
+        <div class="result-headline" id="verdictTitle"></div>
+
+        <div class="result-box">
+          <h3>Audit Analysis</h3>
+          <p id="verdictExplanation"></p>
+        </div>
+
+        <div class="result-box">
+          <h3>This Week's Action Plan[cite: 6]</h3>
+          <ul id="actionPlan"></ul>
+        </div>
+
+        <div class="cta-box">
+          <h3>Want the complete system?[cite: 6]</h3>
+          <p style="margin-bottom: 14px; color: #ccc;">
+            Get Shredlane Foundations for the exact structure that keeps you in a reliable deficit week after week[cite: 6].
+          </p>
+          <p style="font-weight: 700; color: var(--yellow); margin-bottom: 14px;">
+            KES 1,997
+          </p>
+          <a href="https://wa.me/254705671119?text=Hi%2C%20I%20just%20completed%20the%20Calorie%20Deficit%20Audit%20and%20I%27m%20interested%20in%20Shredlane%20Foundations" 
+             class="btn" style="text-decoration: none; display: block;">
+            Message me on WhatsApp
+          </a>
+        </div>
+
+        <button class="btn" style="background: transparent; border: 2px solid #444; color: #ccc; margin-top: 16px;" onclick="location.reload()">
+          Start Over
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function calculateAudit() {
+      const daysTracked = parseInt(document.getElementById('daysTracked').value) || 0;
+      const accuracy = parseInt(document.getElementById('trackingAccuracy').value) || 0;
+      const weekdayCals = parseInt(document.getElementById('weekdayCalories').value) || 0;
+      const weekendCals = parseInt(document.getElementById('weekendCalories').value) || 0;
+      
+      const checkedBoxes = document.querySelectorAll('.hidden-check:checked').length;
+
+      let verdict = "";
+      let explanation = "";
+      let actions = [];
+
+      // Evaluation Logic
+      if (daysTracked >= 6 && accuracy >= 8 && checkedBoxes <= 2 && (weekendCals <= weekdayCals + 200)) {
+        verdict = "I am likely in a real deficit[cite: 6]";
+        explanation = "Your tracking consistency is high, weekend variance is controlled, and hidden sources are low[cite: 6]. Keep going and monitor your weekly average[cite: 6].";
+        actions = [
+          "Maintain current tracking precision for another 7 days[cite: 6].",
+          "Focus on consistency rather than changing your intake targets.",
+          "Track step count to ensure NEAT non-exercise activity remains high."
+        ];
+      } else if (daysTracked >= 4 && checkedBoxes <= 4) {
+        verdict = "I am borderline[cite: 6]";
+        explanation = "You have good intentions, but subtle calorie leaks or weekend bumps are likely bringing your average calories too close to maintenance[cite: 6].";
+        actions = [
+          "One tracking improvement: Weigh cooking oils and butter on a digital scale instead of eyeballing[cite: 5, 6].",
+          "One hidden calorie source to control: Limit weekend calorie spikes to match weekday targets[cite: 4, 6].",
+          "New focus: Track all 7 days without missing entries[cite: 4, 6]."
+        ];
+      } else {
+        verdict = "I am probably not in a consistent deficit[cite: 6]";
+        explanation = "Between untracked days, unmeasured food additions, or elevated weekend eating, your net intake is wiping out your daily deficit[cite: 4, 5, 6]. This is the main issue to fix[cite: 6].";
+        actions = [
+          "One tracking improvement: Log every meal before eating it for the next 7 straight days[cite: 4, 6].",
+          "One hidden calorie source to control: Eliminating uncounted liquid calories, cooking oils, and untracked snacks[cite: 5, 6].",
+          "New focus: Re-establish an accurate daily intake target and stick to it strictly for 1 week[cite: 4, 6]."
+        ];
+      }
+
+      document.getElementById('audit-form').classList.add('hidden');
+      document.getElementById('results').classList.remove('hidden');
+
+      document.getElementById('verdictTitle').textContent = `Verdict: ${verdict}`;
+      document.getElementById('verdictExplanation').textContent = explanation;
+
+      const actionsList = document.getElementById('actionPlan');
+      actionsList.innerHTML = "";
+      actions.forEach(act => {
+        const li = document.createElement('li');
+        li.textContent = act;
+        li.style.marginBottom = "8px";
+        actionsList.appendChild(li);
+      });
+    }
+  </script>
+</body>
+</html>
