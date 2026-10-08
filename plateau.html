@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fat-Loss Plateau Checklist | Shredlane Prime</title>
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --yellow: #FFD600;
+      --card: #1a1a1a;
+      --text: #ffffff;
+      --muted: #aaaaaa;
+      --border: #333333;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--black);
+      color: var(--text);
+      line-height: 1.5;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      display: block;
+      margin: 0 auto 16px auto;
+      max-width: 200px;
+      width: 100%;
+      height: auto;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      text-align: center;
+      color: var(--yellow);
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 28px 24px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+      margin-bottom: 20px;
+      border: 1px solid #222;
+    }
+
+    .section-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--yellow);
+      margin-bottom: 12px;
+      border-bottom: 1px solid #222;
+      padding-bottom: 6px;
+    }
+
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: #111;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+
+    .checkbox-item:hover {
+      border-color: #555;
+    }
+
+    .checkbox-item input[type="checkbox"] {
+      margin-top: 3px;
+      accent-color: var(--yellow);
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+
+    .checkbox-item span {
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 15px;
+      background: var(--yellow);
+      color: #000;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .btn:hover {
+      background: #ffe033;
+    }
+
+    .hidden { display: none; }
+
+    .result-headline {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--yellow);
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .result-box {
+      background: #111;
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 18px;
+      border: 1px solid #333;
+    }
+
+    .result-box h3 {
+      color: var(--yellow);
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+    }
+
+    .result-box p, .result-box li {
+      color: #ccc;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .result-box ol, .result-box ul {
+      padding-left: 20px;
+    }
+
+    .cta-box {
+      background: linear-gradient(135deg, #1a1a1a, #222);
+      border: 1px solid var(--yellow);
+      border-radius: 14px;
+      padding: 20px;
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    .cta-box h3 {
+      color: var(--yellow);
+      margin-bottom: 8px;
+    }
+
+    .intro-text {
+      color: #ccc;
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- LOGO -->
+    <img src="logo.png" alt="Shredlane" class="logo" onerror="this.style.display='none'" />
+
+    <!-- INTRO & CHECKLIST FORM -->
+    <div id="plateau-form">
+      <div class="card">
+        <h1>Fat-Loss Plateau Checklist</h1>
+        <p class="subtitle">Is it a real plateau or just normal noise?[cite: 7]</p>
+        <div class="intro-text">
+          A true plateau means your average weekly weight has not moved downward for 3-4 weeks despite consistent effort[cite: 7]. One bad week or a temporary water spike is not a plateau[cite: 7]. Tick every statement that is true for you right now[cite: 8].
+        </div>
+      </div>
+
+      <!-- SECTION A -->
+      <div class="card">
+        <div class="section-title">A. Weigh-in Quality[cite: 8]</div>
+        <div class="checkbox-group">
+          <label class="checkbox-item">
+            <input type="checkbox" class="check-ac">
+            <span>I weigh at the same time of day most days[cite: 8]</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" class="check-ac">
+            <span>I weigh after using the bathroom, before eating[cite: 8]</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" class="check-ac">
+            <span>I look at the weekly average, not single days[cite: 8]</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" class="check-ac">
+            <span>My average weight has been flat or rising for 3+ weeks[cite: 8]</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- SECTION B -->
+      <div class="card">
+        <div class="section-title">B. Tracking Accuracy[cite: 8]</div>
+        <div class="checkbox-group">
+          <label class="checkbox-item">
+            <input type="checkbox" class="check-ac">
+            <span>I weigh or measure most of my food[cite: 8]</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" class="check-ac">
+            <span>I log oils, sauces, drinks, and "tastes"[cite: 8]</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" class="check-ac">
+            <span>My tracking has been consistent (not just weekdays)[cite: 8]</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- SECTION C -->
+      <div class="card">
+        <div class="section-title">C. Nutrition Targets[cite: 8]</div>
+        <div class="checkbox-group">
+          <label class="checkbox-item">
+            <input type="checkbox" class="check-ac">
+            <span>I am still hitting my calorie target most days[cite: 8]</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" class="check-ac">
+            <span>I am hitting my protein target most days[cite: 8]</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" class="check-ac">
+            <span>Weekends are not dramatically higher than weekdays[cite: 8]</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- SECTION D & E -->
+      <div class="card">
+        <div class="section-title">D & E. Movement, Recovery & Other Factors[cite: 8]</div>
+        <div class="checkbox-group">
+          <label class="checkbox-item">
+            <input type="checkbox" class="check-other">
+            <span>My average steps have stayed roughly the same[cite: 8]</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" class="check-other">
+            <span>Sleep has been decent[cite: 8]</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" class="check-other">
+            <span>Stress has not been extremely high[cite: 8]</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" class="check-other">
+            <span>I am not in the high-hormone week of my cycle (if applicable)[cite: 8]</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" class="check-other">
+            <span>I have not had unusually high salt or carb days recently[cite: 8]</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" class="check-other">
+            <span>I have not travelled or had major schedule disruption[cite: 8]</span>
+          </label>
+        </div>
+
+        <button class="btn" onclick="evaluatePlateau()">Evaluate Plateau</button>
+      </div>
+    </div>
+
+    <!-- RESULTS SCREEN -->
+    <div id="results" class="hidden">
+      <div class="card">
+        <div class="result-headline" id="resultTitle"></div>
+
+        <div class="result-box">
+          <h3>Assessment</h3>
+          <p id="resultExplanation"></p>
+        </div>
+
+        <div class="result-box">
+          <h3>Clear Next Actions[cite: 9]</h3>
+          <ol id="nextActions"></ol>
+        </div>
+
+        <div class="result-box" style="border-color: #552222;">
+          <h3 style="color: #ff5555;">What NOT To Do[cite: 9]</h3>
+          <ul>
+            <li><strong>X</strong> Do not slash calories by 300+ immediately[cite: 9]</li>
+            <li><strong>X</strong> Do not add extreme cardio[cite: 9]</li>
+            <li><strong>X</strong> Do not panic or restart from zero[cite: 9]</li>
+          </ul>
+        </div>
+
+        <div class="cta-box">
+          <h3>When The Scale Stops Moving[cite: 9]</h3>
+          <p style="margin-bottom: 14px; color: #ccc;">
+            For the complete decision system when the scale stops moving, get the Shredlane Plateau Protocol[cite: 9].
+          </p>
+          <a href="https://wa.me/254705671119?text=Hi%2C%20I%20just%20completed%20the%20Plateau%20Checklist%20and%20I%20need%20the%20Plateau%20Protocol" 
+             class="btn" style="text-decoration: none; display: block;">
+            Message me on WhatsApp
+          </a>
+        </div>
+
+        <button class="btn" style="background: transparent; border: 2px solid #444; color: #ccc; margin-top: 16px;" onclick="location.reload()">
+          Start Over
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function evaluatePlateau() {
+      const acCount = document.querySelectorAll('.check-ac:checked').length;
+      const totalCount = document.querySelectorAll('input[type="checkbox"]:checked').length;
+
+      let title = "";
+      let explanation = "";
+
+      if (acCount < 4) {
+        title = "You likely do not have a true plateau yet[cite: 9]";
+        explanation = "Fewer than 4 checks ticked in Sections A–C indicates that the scale freeze is likely due to temporary water retention or tracking inconsistencies rather than a biological stall[cite: 9]. Focus on consistency and accurate tracking first[cite: 9].";
+      } else {
+        title = "You have a real plateau[cite: 9]";
+        explanation = "With 5+ checks ticked across the board, your tracking accuracy, weigh-in quality, and lifestyle variables are solid[cite: 9]. Your body has adapted to current expenditure[cite: 9]. Follow the action steps below[cite: 9].";
+      }
+
+      const actions = [
+        "Do a full Calorie Deficit Audit this week[cite: 9].",
+        "Increase daily steps by 1,500–2,000 for the next 10–14 days[cite: 9].",
+        "Tighten tracking accuracy for 7 full days (weigh everything)[cite: 9].",
+        "If still flat after that, move to the Plateau Protocol[cite: 9]."
+      ];
+
+      document.getElementById('plateau-form').classList.add('hidden');
+      document.getElementById('results').classList.remove('hidden');
+
+      document.getElementById('resultTitle').textContent = title;
+      document.getElementById('resultExplanation').textContent = explanation;
+
+      const ol = document.getElementById('nextActions');
+      ol.innerHTML = "";
+      actions.forEach(act => {
+        const li = document.createElement('li');
+        li.textContent = act;
+        li.style.marginBottom = "8px";
+        ol.appendChild(li);
+      });
+    }
+  </script>
+</body>
+</html>
